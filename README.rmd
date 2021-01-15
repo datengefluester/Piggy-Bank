@@ -34,10 +34,10 @@ hp_theme <- function(base_size = 13, base_family = "") {
                                        debug = FALSE),
       plot.margin =       margin(12,10,5,10),
       # Modified inheritance structure of text element
-      plot.title =        element_text(size = rel(0.75), family = '' ,
+      plot.title =        element_text(size = rel(0.8), family = '' ,
                                        face = 'bold', hjust = 0,
                                        vjust = 2.5, colour = '#3B3B3B'),
-      plot.subtitle =     element_text(size = rel(0.4), family = '' ,
+      plot.subtitle =     element_text(size = rel(0.6), family = '' ,
                                        face = 'plain', hjust = 0,
                                        vjust = 2.5, colour = '#3B3B3B', 
                                        margin = margin(0,0,15,0)),
@@ -122,13 +122,13 @@ d %>%
                      panel.grid.major.y = element_blank(), 
                      axis.line.x=element_line( size=.3, color="black"), 
                      legend.position = c(0.88, 0.98), 
-                     legend.text=element_text(size=7),
+                     legend.text=element_text(size=8),
                      legend.title=element_blank(), 
                      legend.key.height= unit(0.4,"line"),
                      legend.key = element_blank(), 
                      axis.ticks.y = element_blank(), 
                      axis.ticks.x =element_line( size=.3, color="black"), 
-                     plot.caption=element_text(size=5), 
+                     plot.caption=element_text(size=7), 
                      axis.text.x=element_text(color="black"))
 ```
 
@@ -167,14 +167,14 @@ ggplot(aes(x=Year,y=value, fill=variable)) +
                      panel.grid.major.y = element_line(size=.2, color="#656565"), 
                      axis.line.x=element_line( size=.3, color="black"), 
                      axis.line.y=element_blank(),
-                     legend.position = c(0.88, 0.7), 
-                     legend.text=element_text(size=7),
+                     legend.position = c(0.9, 0.95), 
+                     legend.text=element_text(size=8),
                      legend.title=element_blank(), 
                      legend.key.height= unit(0.4,"line"),
                      legend.key = element_blank(), 
                      axis.ticks.y = element_blank(), 
                      axis.ticks.x =element_line( size=.3, color="black"), 
-                     plot.caption=element_text(size=5), 
+                     plot.caption=element_text(size=7),
                      axis.text.x=element_text(color="black"))
 ```
 
@@ -226,14 +226,14 @@ country %>%
                      panel.grid.major.y = element_blank(), 
                      axis.line.x=element_line( size=.3, color="black"), 
                      axis.line.y=element_line( size=.3, color="#656565"), 
-                     legend.position = c(0.88, 0.7), 
-                     legend.text=element_text(size=7),
+                     legend.position = c(0.87, 0.3), 
+                     legend.text=element_text(size=6),
                      legend.title=element_blank(), 
                      legend.key.height= unit(0.4,"line"),
                      legend.key = element_blank(), 
                      axis.ticks.y = element_blank(), 
                      axis.ticks.x =element_line( size=.3, color="black"), 
-                     plot.caption=element_text(size=5), 
+                     plot.caption=element_text(size=7),
                      axis.text.x=element_text(color="black"))
 ```
 
@@ -255,7 +255,8 @@ country %>%
   pivot_longer(cols=c('Value_Percent', 'Count_Percent'), names_to='variable', 
                values_to="value") %>% 
   arrange(desc(value)) %>% 
-  ggplot(aes(x=as.factor(Country),y=value, fill=variable)) +
+  mutate(Country= as.factor(Country)) %>% 
+  ggplot(aes(x=reorder(Country, value),y=value, fill=variable)) +
   geom_bar(stat='identity', position='dodge') +
   coord_flip() +
   scale_y_continuous(limits = c(0, 25.1), 
@@ -266,7 +267,7 @@ country %>%
   scale_x_discrete(labels=c("1"="Germany","0"="All Other")) +
   scale_fill_manual(breaks=c("Value_Percent","Count_Percent"), 
                     values=c("#1b9e77", "#d95f02"),labels = c("Value", "Count"))  +
-  labs(title = "Contribution to Piggy Bank by Country Other Than Germany",
+  labs(title = "Contribution to Piggy Bank by Country \n Other Than Germany",
        subtitle = "In Percent of total. Total Money: 34.86€. Total Coins: 296.",
        caption = "Source: Piggy Bank") +
   hp_theme() + theme(axis.text= element_text(size=7.5), axis.title.x = element_blank(), 
@@ -276,14 +277,15 @@ country %>%
                      panel.grid.major.y = element_blank(), 
                      axis.line.x=element_line( size=.3, color="black"), 
                      axis.line.y=element_line( size=.3, color="#656565"), 
-                     legend.position = c(0.88, 0.7), 
-                     legend.text=element_text(size=7),
+                     legend.position = c(0.89, 0.7), 
+                     legend.text=element_text(size=6),
+                     legend.margin=margin(t = 0, unit='cm'),
                      legend.title=element_blank(), 
                      legend.key.height= unit(0.4,"line"),
                      legend.key = element_blank(), 
                      axis.ticks.y = element_blank(), 
                      axis.ticks.x =element_line( size=.3, color="black"), 
-                     plot.caption=element_text(size=5), 
+                     plot.caption=element_text(size=7),
                      axis.text.x=element_text(color="black"))
 ```
 
