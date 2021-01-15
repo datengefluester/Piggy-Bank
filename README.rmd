@@ -1,0 +1,12 @@
+---
+title: "Ueberhangmandate"
+output: rmarkdown::github_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "README_figs/"
+)
+```
+
+## Packages
