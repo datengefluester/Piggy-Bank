@@ -166,7 +166,7 @@ ggplot(aes(x=Year,y=value, fill=variable)) +
                               "25" = "25","35"="35%")) +
   scale_x_continuous(limits=c(1998,2021),
                      expand = c(0, 0)) +
-  labs(title = "By Years of Minting") +
+  labs(title = "By Year of Minting") +
   scale_fill_manual(breaks=c("Value_Percent","Count_Percent"), 
                     values=c("#1b9e77", "#d95f02"),labels = c("Value", "Count"))  +
   hp_theme() + theme(axis.text= element_text(size=6), axis.title.x = element_blank(), 
@@ -293,10 +293,10 @@ figure <- ggarrange(coin,year,germany,rest,
                     common.legend = TRUE, legend = "bottom")
 
 figure <- annotate_figure(figure,
-                top = text_grob("Contribution to a (German) Piggy Bank", 
+                top = text_grob("Contributions to a (German) Piggy Bank", 
                                 color = "#3B3B3B", face = "bold", 
                                 size = 12),
-                bottom = text_grob("Source: Piggy Bank \n Coins: 671. Value: 52.1€ (~$63).\n For other Countries: 34.86€ (~$42) and 296.", 
+                bottom = text_grob("Source: Piggy Bank \n Coins: 671. Value: 52.1€ (~$63).\n For other Countries: 34.86€ (~$42) and 296 respectively.", 
                                    color = "#3B3B3B",
                                    hjust = 1, x = 0.98, 
                                    face = "italic", 
@@ -329,7 +329,7 @@ ggsave("./pics/by_coin.jpg",width=4, height=3)
 ## by year
 ```{r year, message=FALSE}
 year +
-  labs(title = "Contribution to Piggy Bank by Years of Minting",
+  labs(title = "Contribution to Piggy Bank by Year of Minting",
        subtitle = "Value: 52.1€ (~$63). Coins: 671.",
        caption = "Source: Piggy Bank") +
   theme(legend.text=element_text(size=5.5),
