@@ -292,7 +292,7 @@ germany <- country_df %>%
   scale_x_discrete(labels=c("1"="Germany","0"="Other \n Countries")) +
   scale_fill_manual(breaks=c("Value_Percent","Count_Percent"), 
                     values=c("#1b9e77", "#d95f02"),labels = c("Value", "Count"))  +
-  labs(title = "By Germany vs. other Countries") +
+  labs(title = "By Country of Origin") +
   hp_theme() + theme(axis.text= element_text(size=6), axis.title.x = element_blank(), 
                      plot.title.position = "plot", 
                      axis.title.y = element_blank(), 
@@ -338,7 +338,7 @@ rest <- country_df %>%
   scale_x_discrete(labels=c("1"="Germany","0"="All Other")) +
   scale_fill_manual(breaks=c("Value_Percent","Count_Percent"), 
                     values=c("#1b9e77", "#d95f02"),labels = c("Value", "Count"))  +
-  labs(title = "To Other Countries") +
+  labs(title = "Other Countries") +
   hp_theme() + theme(axis.text= element_text(size=4), axis.title.x = element_blank(), 
                      plot.title.position = "plot", 
                      axis.title.y = element_blank(), 
@@ -369,7 +369,7 @@ figure <- annotate_figure(figure,
                 top = text_grob("Contribution to a (German) Piggy Bank", 
                                 color = "#3B3B3B", face = "bold", 
                                 size = 12),
-                bottom = text_grob("Total Coins: 671. Total Money: 52.1€. Data source: Piggy Bank", 
+                bottom = text_grob("Source: Piggy Bank \n Coins: 671. Value: 52.1€ (~$63).\n For other Countries: 34.86€ (~$42) and 296.", 
                                    color = "#3B3B3B",
                                    hjust = 1, x = 0.98, 
                                    face = "italic", 
@@ -382,6 +382,10 @@ figure
 
 ![](README_figs/combine-1.png)<!-- -->
 
+``` r
+ggsave("./pics/combined.jpg",width=4, height=3)
+```
+
 # Edit individual graphs
 
 ## by coin
@@ -389,7 +393,7 @@ figure
 ``` r
 coin + 
   labs(title = "Contribution to Piggy Bank by Coin",
-       subtitle = "Total Money: 52.1€. Total Coins: 671.",
+       subtitle = "Value: 52.1€ (~$63). Coins: 671.",
        caption = "Source: Piggy Bank") +
   theme(legend.text=element_text(size=5.5),
         legend.margin=margin(t = 0, unit='cm'),
@@ -399,12 +403,16 @@ coin +
 
 ![](README_figs/coin-1.png)<!-- -->
 
+``` r
+ggsave("./pics/by_coin.jpg",width=4, height=3)
+```
+
 ## by year
 
 ``` r
 year +
   labs(title = "Contribution to Piggy Bank by Years of Minting",
-       subtitle = "Total Money: 52.1€. Total Coins: 671.",
+       subtitle = "Value: 52.1€ (~$63). Coins: 671.",
        caption = "Source: Piggy Bank") +
   theme(legend.text=element_text(size=5.5),
         legend.margin=margin(t = 0, unit='cm'),
@@ -414,26 +422,38 @@ year +
 
 ![](README_figs/year-1.png)<!-- -->
 
+``` r
+ggsave("./pics/by_year.jpg",width=4, height=3)
+```
+
 ## Germany vs. Rest
 
 ``` r
 germany +
-  labs(title = "Contribution to Piggy Bank by Country",
-       subtitle = "Total Money: 52.1€. Total Coins: 671.",
+  labs(title = "Contribution to Piggy Bank by Country of Origin",
+       subtitle = "Value: 52.1€ (~$63). Coins: 671.",
        caption = "Source: Piggy Bank") +
   theme(plot.caption=element_text(size=4))
 ```
 
 ![](README_figs/germany-1.png)<!-- -->
 
+``` r
+ggsave("./pics/germany_vs_rest.jpg",width=4, height=3)
+```
+
 ## Rest
 
 ``` r
 rest + 
   labs(title = "Contribution to Piggy Bank by Country \nFor Countries other than Germany",
-       subtitle = "Total Money: 34.86€. Total Coins: 296.",
+       subtitle = "Value: 34.86€. Coins: 296.",
        caption = "Source: Piggy Bank") +
   theme(plot.caption=element_text(size=4))
 ```
 
 ![](README_figs/rest-1.png)<!-- -->
+
+``` r
+ggsave("./pics/rest.jpg",width=4, height=3)
+```
