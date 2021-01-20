@@ -60,7 +60,21 @@ hp_theme <- function(base_size = 13, base_family = "") {
 
 ``` r
 raw <- read.csv("raw.csv")
+head(raw,5)
 ```
+
+    ##   Coin Year Germany Netherlands France Ireland Spain Slovakia Belgium Greece
+    ## 1 0.01 1999       0           0      0       0     1        0       1      0
+    ## 2 0.01 2000       0           0      0       0     0        0       0      0
+    ## 3 0.01 2001       0           0      0       0     0        0       0      0
+    ## 4 0.01 2002      24           0      0       0     0        0       0      0
+    ## 5 0.01 2003       2           0      0       0     0        0       0      0
+    ##   Italy Latvia Luxembourg Austria Finland Cyprus
+    ## 1     0      0          0       0       0      0
+    ## 2     0      0          0       0       0      0
+    ## 3     0      0          0       0       0      0
+    ## 4     0      0          0       0       0      0
+    ## 5     0      0          0       1       0      0
 
 ## Create new variables
 

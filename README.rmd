@@ -68,7 +68,10 @@ hp_theme <- function(base_size = 13, base_family = "") {
 ## Read in data
 ```{r data}
 raw <- read.csv("raw.csv")
+head(raw,5)
 ```
+
+
 
 ## Create new variables
 ```{r variables}
