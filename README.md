@@ -108,79 +108,42 @@ kbl(analysis)
 ```
 
 <table>
-
 <thead>
-
 <tr>
-
 <th style="text-align:left;">
-
 Statistic
-
 </th>
-
 <th style="text-align:right;">
-
 Value
-
 </th>
-
 </tr>
-
 </thead>
-
 <tbody>
-
 <tr>
-
 <td style="text-align:left;">
-
 Total Monetary Value
-
 </td>
-
 <td style="text-align:right;">
-
 52.1000000
-
 </td>
-
 </tr>
-
 <tr>
-
 <td style="text-align:left;">
-
 Coins
-
 </td>
-
 <td style="text-align:right;">
-
 671.0000000
-
 </td>
-
 </tr>
-
 <tr>
-
 <td style="text-align:left;">
-
 Average Value
-
 </td>
-
 <td style="text-align:right;">
-
 0.0776453
-
 </td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 # Individual Graphs:
@@ -241,7 +204,7 @@ year <- d %>%
                values_to="value") %>% 
 ggplot(aes(x=Year,y=value, fill=variable)) +
   geom_bar(stat='identity', position='dodge') +
-  scale_y_continuous(limits = c(0, 36), 
+  scale_y_continuous(limits = c(0, 37), 
                      breaks = c(seq(5,35,10)), 
                      expand = c(0, 0),
                      labels=c("5"="5","15"="15",
@@ -424,6 +387,7 @@ ggsave("./pics/by_coin.jpg",width=4, height=3)
 ## by year
 
 ``` r
+library(ggannotate)
 year +
   labs(title = "Contribution to Piggy Bank by Year of Minting",
        subtitle = "Value: 52.1€ (~$63). Coins: 671.",
@@ -431,10 +395,28 @@ year +
   theme(legend.text=element_text(size=5.5),
         legend.margin=margin(t = 0, unit='cm'),
         legend.position = c(0.85, 0.865),
-        plot.caption=element_text(size=4))
+        plot.caption=element_text(size=4),
+        axis.text.y=element_blank()) +
+  geom_text(data = data.frame(x = 1998.2, y = 5.8, 
+    label = "5"), mapping = aes(x = x, y = y, label = label), 
+    inherit.aes = FALSE, size=1.8, color="#656565") +
+   geom_text(data = data.frame(x = 1998.3, y = 15.8, 
+    label = "15"), mapping = aes(x = x, y = y, label = label), 
+    inherit.aes = FALSE, size=1.8, color="#656565") +
+ geom_text(data = data.frame(x = 1998.3, y = 25.8, 
+    label = "25"), mapping = aes(x = x, y = y, label = label), 
+    inherit.aes = FALSE, size=1.8, color="#656565") +
+  geom_text(data = data.frame(x = 1998.5, y = 35.8, 
+    label = "35%"), mapping = aes(x = x, y = y, label = label), 
+    inherit.aes = FALSE, size=1.8, color="#656565") 
 ```
 
 ![](README_figs/year-1.png)<!-- -->
+
+``` r
+#ggannotate(p)
+#ggThemeAssist::ggThemeAssistGadget(p)
+```
 
 ``` r
 ggsave("./pics/by_year.jpg",width=4, height=3)
